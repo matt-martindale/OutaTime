@@ -80,16 +80,22 @@ class TimeCircuitsViewController: UIViewController, UIPickerViewDelegate, DatePi
     }
     
     func showAlert() {
-        let alert = UIAlertController(title: "Time Travel Successful", message: "You're new date is \(currentDate)", preferredStyle: .alert)
+        if let destinationTime = destinationTimeLabel.text {
+        let alert = UIAlertController(title: "Time Travel Successful", message: "You're new date is \(destinationTime)", preferredStyle: .alert)
         let okAction = UIAlertAction(title: "This is heavy", style: .default, handler: {(alert: UIAlertAction!) in self.showDelorean()})
         let deferAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-        let deleteAction = UIAlertAction(title: "We must go back!", style: .destructive, handler: nil)
+            let deleteAction = UIAlertAction(title: "We must go back!", style: .destructive, handler: {(alert: UIAlertAction!) in
+                self.currentSpeed = 0
+                self.speedLabel.text = "0 MPH"
+                self.destinationTimeLabel.text = self.lastTimeDepartedLabel.text
+                self.startTimer() })
         
         alert.addAction(okAction)
         alert.addAction(deferAction)
         alert.addAction(deleteAction)
         
         present(alert, animated: true, completion: nil)
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -105,7 +111,6 @@ class TimeCircuitsViewController: UIViewController, UIPickerViewDelegate, DatePi
         formatter.dateFormat = "MMM : dd : yyyy"
         let dateChosen = formatter.string(from: date)
         destinationTimeLabel.text = dateChosen
-//        print(dateChosen)
     }
     
     
