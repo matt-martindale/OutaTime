@@ -18,6 +18,7 @@ class TimeCircuitsViewController: UIViewController, UIPickerViewDelegate, DatePi
     @IBOutlet weak var lastTimeDepartedLabel: UILabel!
     @IBOutlet weak var speedLabel: UILabel!
     @IBOutlet weak var deloreanButton: UIButton!
+    @IBOutlet weak var travelBackButton: UIButton!
     
     var dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
@@ -29,36 +30,67 @@ class TimeCircuitsViewController: UIViewController, UIPickerViewDelegate, DatePi
     var currentDate: String = {
         let currentDate = Date()
         let formatter = DateFormatter()
-        formatter.dateFormat = "MMM:dd:yyyy"
+        formatter.dateFormat = "MMM : dd : yyyy"
         let dateTimeString = formatter.string(from: currentDate)
         return dateTimeString
     }()
     
     var currentSpeed = 0
+    var timer: Timer?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         presentTimeLabel.text = currentDate
         speedLabel.text = "\(currentSpeed) MPH"
-        lastTimeDepartedLabel.text = "---:--:----"
- 
+        lastTimeDepartedLabel.text = "--- : -- : ----"
+        travelBackButton.isEnabled = false
         
     }
     
     //MARK: - Buttons
     @IBAction func setDestinationTimeButton(_ sender: Any) {
         deloreanButton.isHidden = true
+        timer?.invalidate()
+        speedLabel.text = "0 MPH"
+        currentSpeed = 0
+        travelBackButton.isEnabled = true
     }
     
     @IBAction func travelBackButton(_ sender: Any) {
-        deloreanButton.isHidden = false
-//        startTimer()
+        startTimer()
     }
     
-//    func startTimer() {
-//        let timer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true, block: )
-//    }
+    func startTimer() {
+        timer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true, block: {_ in
+            self.currentSpeed += 1
+            self.speedLabel.text = String("\(self.currentSpeed) MPH")
+            if self.currentSpeed == 88 {
+                self.timer?.invalidate()
+                self.showAlert()
+                self.lastTimeDepartedLabel.text = self.presentTimeLabel.text
+                self.presentTimeLabel.text = self.destinationTimeLabel.text
+            }
+        })
+        travelBackButton.isEnabled = false
+    }
+    
+    func showDelorean() {
+        deloreanButton.isHidden = false
+    }
+    
+    func showAlert() {
+        let alert = UIAlertController(title: "Time Travel Successful", message: "You're new date is \(currentDate)", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "This is heavy", style: .default, handler: {(alert: UIAlertAction!) in self.showDelorean()})
+        let deferAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        let deleteAction = UIAlertAction(title: "We must go back!", style: .destructive, handler: nil)
+        
+        alert.addAction(okAction)
+        alert.addAction(deferAction)
+        alert.addAction(deleteAction)
+        
+        present(alert, animated: true, completion: nil)
+    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ModalDatePickerSegue" {
@@ -70,7 +102,7 @@ class TimeCircuitsViewController: UIViewController, UIPickerViewDelegate, DatePi
 
     func destinationWasChosen(date: Date) {
         let formatter = DateFormatter()
-        formatter.dateFormat = "MMM:dd:yyyy"
+        formatter.dateFormat = "MMM : dd : yyyy"
         let dateChosen = formatter.string(from: date)
         destinationTimeLabel.text = dateChosen
 //        print(dateChosen)

@@ -20,6 +20,11 @@ class DatePickerViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+         
+        timeDatePicker.backgroundColor = UIColor.clear
+        timeDatePicker.setValue(UIColor.green, forKey: "textColor")
+        timeDatePicker.setValue(0.8, forKey: "alpha")
+        timeDatePicker.setValue(false, forKey: "highlightsToday")
 
     }
     
@@ -34,3 +39,7 @@ class DatePickerViewController: UIViewController {
     }
     
 }
+
+
+
+
