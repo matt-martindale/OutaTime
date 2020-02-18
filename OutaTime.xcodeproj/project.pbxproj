@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		C941B9BA23FB6ECF0048404F /* digital-7.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C941B9B923FB6ECF0048404F /* digital-7.ttf */; };
+		C941B9BF23FB7AC70048404F /* DocViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C941B9BE23FB7AC70048404F /* DocViewController.swift */; };
 		C9EAA1FC23FB6882002B0F48 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9EAA1FB23FB6882002B0F48 /* AppDelegate.swift */; };
 		C9EAA1FE23FB6882002B0F48 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9EAA1FD23FB6882002B0F48 /* SceneDelegate.swift */; };
 		C9EAA20323FB6882002B0F48 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C9EAA20123FB6882002B0F48 /* Main.storyboard */; };
@@ -19,6 +20,7 @@
 
 /* Begin PBXFileReference section */
 		C941B9B923FB6ECF0048404F /* digital-7.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "digital-7.ttf"; sourceTree = "<group>"; };
+		C941B9BE23FB7AC70048404F /* DocViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocViewController.swift; sourceTree = "<group>"; };
 		C9EAA1F823FB6882002B0F48 /* OutaTime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OutaTime.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9EAA1FB23FB6882002B0F48 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C9EAA1FD23FB6882002B0F48 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -46,6 +48,7 @@
 			children = (
 				C9EAA20F23FB68F2002B0F48 /* TimeCircuitsViewController.swift */,
 				C9EAA21123FB6902002B0F48 /* DatePickerViewController.swift */,
+				C941B9BE23FB7AC70048404F /* DocViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -56,6 +59,14 @@
 				C941B9B923FB6ECF0048404F /* digital-7.ttf */,
 			);
 			path = "New Group";
+			sourceTree = "<group>";
+		};
+		C941B9BD23FB77210048404F /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				C9EAA20123FB6882002B0F48 /* Main.storyboard */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		C9EAA1EF23FB6882002B0F48 = {
@@ -79,10 +90,10 @@
 			children = (
 				C9EAA1FB23FB6882002B0F48 /* AppDelegate.swift */,
 				C9EAA1FD23FB6882002B0F48 /* SceneDelegate.swift */,
-				C9EAA20123FB6882002B0F48 /* Main.storyboard */,
-				C9EAA20423FB6884002B0F48 /* Assets.xcassets */,
-				C941B9BC23FB76E60048404F /* New Group */,
 				C9EAA20623FB6884002B0F48 /* LaunchScreen.storyboard */,
+				C9EAA20423FB6884002B0F48 /* Assets.xcassets */,
+				C941B9BD23FB77210048404F /* Views */,
+				C941B9BC23FB76E60048404F /* New Group */,
 				C9EAA20923FB6884002B0F48 /* Info.plist */,
 				C941B9BB23FB76DC0048404F /* View Controllers */,
 			);
@@ -163,6 +174,7 @@
 			files = (
 				C9EAA21223FB6902002B0F48 /* DatePickerViewController.swift in Sources */,
 				C9EAA1FC23FB6882002B0F48 /* AppDelegate.swift in Sources */,
+				C941B9BF23FB7AC70048404F /* DocViewController.swift in Sources */,
 				C9EAA21023FB68F2002B0F48 /* TimeCircuitsViewController.swift in Sources */,
 				C9EAA1FE23FB6882002B0F48 /* SceneDelegate.swift in Sources */,
 			);
